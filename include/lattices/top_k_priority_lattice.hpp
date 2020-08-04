@@ -32,7 +32,7 @@ class TopKPriorityLattice : public Lattice<std::set<PriorityValuePair<P, V>>> {
     }
 
     while (this->element.size() > k_) {
-       this->element.erase(this->element.end());
+       this->element.erase(--this->element.end());
     }
   
   }
