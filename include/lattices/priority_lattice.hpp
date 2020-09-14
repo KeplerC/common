@@ -30,15 +30,17 @@ struct PriorityValuePair {
 
 template <class P, class V, class CompareP = std::less<P>, class CompareV = std::less<V>>
 bool operator< (const PriorityValuePair<P,V>& a, const PriorityValuePair<P,V>& b) {
-    CompareP compare_p;
-    CompareV compare_v;
-    if (compare_p(a.priority, b.priority)) {
-      // return true if a.p < b.p
-      return true;
-    } else if (!compare_p(b.priority, a.priority) && compare_v(a.value, b.value)) {
-      return true;
-    } 
-    return false;
+  CompareP compare_p;
+  CompareV compare_v;
+  return compare_p(a.priority, b.priority);
+  /*
+  if (compare_p(a.priority, b.priority)) {
+    // return true if a.p < b.p
+    return true;
+  } else if (!compare_p(b.priority, a.priority) && compare_v(a.value, b.value)) {
+    return true;
+  } 
+  return false;*/
 }
 
 
