@@ -21,13 +21,22 @@
 
 template <class P, class V, size_t K> 
 class TopKPriorityLattice : public Lattice<std::set<PriorityValuePair<P, V>>> {
-  using Element = std::set<PriorityValuePair<P, V>>;
+  using Element = std::set<PriorityValuePair<double, string>>;
   using Base = Lattice<Element>;
 
  protected:
   int k_ = K;
   void do_merge(const Element& e) override {
+
+    // if (e.size() == 1 && (*e.begin()).priority == 0){
+    //   k_ = std::stoi((*e.begin()).value);
+    //   return;
+    // }
+    
     for (const auto& p: e) {
+      std::cout << int(p.priority / 10000);
+      k_ = int(p.priority / 10000);
+      //p.priority = p.priority % 10000;
       this->element.insert(p);
     }
 
